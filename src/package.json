@@ -2,16 +2,16 @@
     "name": "creepeebot",
     "version": "1.0.0",
     "description": "Support Bot for the Dan's Datapacks Discord Server.",
-    "main": "app.js",
+    "main": "main.js",
     "scripts": {
+        "start": "node main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "DanMizu",
     "license": "GNU v3",
     "dependencies": {
-        "@discordjs/rest": "^0.3.0",
-        "discord-api-types": "^0.31.1",
-        "discord.js": "^13.6.0",
+        "axios": "^0.27.2",
+        "discord.js": "^13.8.1",
         "dotenv": "^16.0.0"
     }
 }
