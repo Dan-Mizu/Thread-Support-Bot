@@ -3,4 +3,5 @@ node_modules
 package-lock.json
 
 # Sensitive Files
-src/config/servers.json
+src/config/server_data.json
+src/config/server_data2.json
