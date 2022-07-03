@@ -18,29 +18,52 @@ for (let i = 0; i < server_data.length; i++) {
   };
 
   //events
-  let sent_messages = [];
   client.on('ready', client => {
+    //loop through allowed channels
     for (let i2 = 0; i2 < channel_list.length; i2++) {
-      //remove older images
-      if (sent_messages) {
-        for (let i3 = 0; i3 < sent_messages.length; i3++) {
-          channel.messages.fetch(sent_messages[i3]).then(message => message.delete());
-        }
-      };
+      //update thread helper image in channel
+      updateThreadHelperImage(client, channel_list[i2]);
 
-      //send new images
-      client.channels.fetch(channel_list[i2]).then(channel => {
-        channel.send({ files: ['./resources/create_thread.png'] }).then(message => {
-          //store message id
-          sent_messages.push(message.id);
-        });
+      //update again whenever new thread is created
+      client.on('threadCreate', thread => {
+        //update thread helper image in channel
+        updateThreadHelperImage(client, channel_list[i2]);
       });
-
-      //DEBUG
-      console.log(sent_messages)
-    }
+    };
   });
 
-  //provide Client Token
+  //provide client token
   client.login(server_data[i].client_token);
+};
+
+//updates thread helper image by deleting old ones and sending a new one
+function updateThreadHelperImage(client, channelID) {
+  //get bot ID
+  let botID = client.user.id;
+
+  //remove older messages
+  client.channels.fetch(channelID).then(channel => {
+    deletePastMessagesFromUser(botID, channel);
+  });
+
+  //send new image
+  client.channels.fetch(channelID).then(channel => {
+    sendThreadHelperImage(channel);
+  });
 }
+
+//send thread helper image in this channel
+function sendThreadHelperImage(channel) {
+  channel.send({ files: ['./resources/create_thread.png'] });
+};
+
+//delete all past messages from this bot in this channel
+function deletePastMessagesFromUser(userID, channel) {
+  channel.messages.fetch({ limit: 100 }).then(messages => {
+    messages.forEach(message =>{
+      if (message.author.id == userID) {
+        message.delete();
+      };
+    });
+  });
+};
