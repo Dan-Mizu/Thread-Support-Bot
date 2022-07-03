@@ -1,7 +1,7 @@
 {
-    "name": "creepeebot",
+    "name": "threaded-support-bot",
     "version": "1.0.0",
-    "description": "Support Bot for the Dan's Datapacks Discord Server.",
+    "description": "Discord bot that handles support channels by enforcing threads.",
     "main": "main.js",
     "scripts": {
         "start": "node main.js",

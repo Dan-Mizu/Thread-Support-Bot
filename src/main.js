@@ -1,19 +1,29 @@
-//init environment variables
-require('dotenv').config();
+//dependencies
+const fs = require("fs");
+const path = require("path");
+
+//get servers
+const servers = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "./config/servers.json")).toString()
+);
 
 //init discord.js
-const { Client, Intents } = require('discord.js');
-const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-});
+const { Client, Intents } = require("discord.js");
 
-client.once('ready', () => console.log('Ready!'));
+//loop through servers
+for (let i = 0; i < servers.length; i++) {
+  //init instance
+  const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+  });
 
-client.on('messageCreate', (message) => {
-  if (message.content.includes('ping')) {
-    return message.reply('pong');
-  }
-});
+  //events
+  client.on("messageCreate", (message) => {
+    if (message.content.includes("ping")) {
+      return message.reply("pong");
+    }
+  });
 
-//auth discord bot with client token (always last line)
-client.login(process.env.CLIENT_TOKEN);
+  //provide Client Token
+  client.login(servers[i].client_token);
+}
