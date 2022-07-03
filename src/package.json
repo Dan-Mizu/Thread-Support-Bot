@@ -4,7 +4,7 @@
     "description": "Discord bot that handles support channels by enforcing threads.",
     "main": "main.js",
     "scripts": {
-        "start": "node main.js",
+        "start": "nodemon main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "DanMizu",
@@ -12,6 +12,6 @@
     "dependencies": {
         "axios": "^0.27.2",
         "discord.js": "^13.8.1",
-        "dotenv": "^16.0.0"
+        "nodemon": "^2.0.18"
     }
 }

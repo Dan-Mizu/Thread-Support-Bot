@@ -1,10 +1,25 @@
 [
     {
+        "server_name": "Optional - This is for the file's readability.",
         "client_token": "",
         "channels": [
             {
-                "channel_id": "",
-                "channel_name": ""
+                "channel_name": "Optional - This is for the file's readability.",
+                "channel_id": ""
+            }
+        ]
+    },
+    {
+        "server_name": "Optional - This is for the file's readability.",
+        "client_token": "",
+        "channels": [
+            {
+                "channel_name": "Optional - This is for the file's readability.",
+                "channel_id": ""
+            },
+            {
+                "channel_name": "Optional - This is for the file's readability.",
+                "channel_id": ""
             }
         ]
     }
