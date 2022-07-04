@@ -17,19 +17,22 @@ for (let i = 0; i < server_data.length; i++) {
     channel_list.push(server_data[i].channels[i2].channel_id);
   };
 
-  //events
+  //update thread helper image on startup
   client.on('ready', client => {
     //loop through allowed channels
     for (let i2 = 0; i2 < channel_list.length; i2++) {
       //update thread helper image in channel
       updateThreadHelperImage(client, channel_list[i2]);
-
-      //update again whenever new thread is created
-      client.on('threadCreate', thread => {
-        //update thread helper image in channel
-        updateThreadHelperImage(client, channel_list[i2]);
-      });
     };
+  });
+
+  //update thread helper image whenever new thread is created
+  client.on('threadCreate', thread => {
+    //if thread was made in an accepted channel
+    if (channel_list.includes(thread.parentId)) {
+      //update thread helper image in channel
+      updateThreadHelperImage(client, thread.parentId);
+    }
   });
 
   //provide client token
