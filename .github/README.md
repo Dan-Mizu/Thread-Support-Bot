@@ -1,12 +1,4 @@
-<style>
-  .heading {
-    font-size: 32px;
-  }
-</style>
-
-<p align="center" class="heading">
-    <b>Thread Support Bot</b>
-</p>
+<h1 align="center">Thread Support Bot</h1>
 
 <p align="center">
     <b>Discord bot that helps direct players to using threads in specific channels, such as support channels.</b>
