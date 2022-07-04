@@ -4,4 +4,3 @@ package-lock.json
 
 # Sensitive Files
 src/config/server_data.json
-src/config/server_data2.json
